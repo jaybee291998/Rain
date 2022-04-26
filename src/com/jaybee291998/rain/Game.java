@@ -49,10 +49,23 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void run() {
+		long lastTime = System.nanoTime();
+		final double ns = 1_000_000_000.0/60.0;
+		double delta = 0;
+		double elapsed = 0;
 		while(running) {
-			update();
+			long now = System.nanoTime();
+			elapsed = now - lastTime;
+			delta += elapsed/ns;
+			lastTime = now;
+			if(delta >= 1) {
+				update();
+				delta--;
+				System.out.println("FPS: " + 1_000_000_000/elapsed);
+			}
 			render();
 		}
+		stop();
 	}
 	
 	public void update() {
@@ -64,6 +77,7 @@ public class Game extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
+		screen.clear();
 		screen.render();
 		for(int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
