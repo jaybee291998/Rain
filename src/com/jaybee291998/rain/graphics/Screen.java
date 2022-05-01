@@ -18,8 +18,6 @@ public class Screen {
 		for(int i = 0; i < MAP_SIZE * MAP_SIZE; i++) {
 			tiles[i] = random.nextInt(0xffffff);
 		}
-//		tiles[0] = 0;
-//		tiles[3] = 0xff00ff;
 	}
 	
 	public void clear() {

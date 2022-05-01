@@ -1,7 +1,6 @@
 package com.jaybee291998.rain;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -11,6 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.jaybee291998.rain.graphics.Screen;
+import com.jaybee291998.rain.input.Keyboard;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +21,7 @@ public class Game extends Canvas implements Runnable {
 	
 	private Thread thread;
 	private JFrame frame;
+	private Keyboard key;
 	private boolean running = false;
 	
 	private Screen screen;
@@ -34,6 +35,9 @@ public class Game extends Canvas implements Runnable {
 		setPreferredSize(size);
 		screen = new Screen(width, height);
 		frame = new JFrame();
+		key = new Keyboard();
+		
+		addKeyListener(key);
 	}
 	
 	public synchronized void start() {
@@ -83,8 +87,11 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void update() {
-		xOffset++;
-		yOffset++;
+		key.update();
+		if(key.up) yOffset--;
+		if(key.down) yOffset++;
+		if(key.left) xOffset--;
+		if(key.right) xOffset++;
 	}
 	
 	public void render() {
@@ -114,6 +121,7 @@ public class Game extends Canvas implements Runnable {
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game.frame.setLocationRelativeTo(null);
 		game.frame.setVisible(true);
+		game.requestFocusInWindow(true);
 		
 		game.start();
 		
