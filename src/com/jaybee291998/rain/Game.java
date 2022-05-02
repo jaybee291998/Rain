@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.jaybee291998.rain.graphics.Screen;
+import com.jaybee291998.rain.graphics.SpriteSheet;
 import com.jaybee291998.rain.input.Keyboard;
 
 public class Game extends Canvas implements Runnable {
