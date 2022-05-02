@@ -4,8 +4,8 @@ import com.jaybee291998.rain.graphics.Screen;
 
 public class Level {
 	
-	private int width, height;
-	private int[] tiles;
+	protected int width, height;
+	protected int[] tiles;
 	
 	public Level(int width, int height) {
 		this.width = width;
@@ -18,21 +18,21 @@ public class Level {
 		loadLevel(path);
 	}
 
-	private void loadLevel(String path) {		
+	protected void loadLevel(String path) {		
 	}
 
-	private void generateLevel() {
+	protected void generateLevel() {
 	}
 	
 	public void update() {
 		
 	}
 	
-	private void time() {
+	protected void time() {
 		
 	}
 	
-	public void render(int xScroll, int yScroll, Screen screen) {
+	protected void render(int xScroll, int yScroll, Screen screen) {
 		
 	}
 
