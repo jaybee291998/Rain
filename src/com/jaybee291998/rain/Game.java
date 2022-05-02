@@ -72,9 +72,9 @@ public class Game extends Canvas implements Runnable {
 				update();
 				delta--;
 				updates++;
+				render();
+				frames++;
 			}
-			render();
-			frames++;
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				System.out.println(updates + " ups, " + frames + " fps");
