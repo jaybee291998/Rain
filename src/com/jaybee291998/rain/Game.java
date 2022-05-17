@@ -10,8 +10,8 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.jaybee291998.rain.graphics.Screen;
-import com.jaybee291998.rain.graphics.SpriteSheet;
 import com.jaybee291998.rain.input.Keyboard;
+import com.jaybee291998.rain.level.RandomLevel;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +23,7 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private JFrame frame;
 	private Keyboard key;
+	private RandomLevel randomLevel;
 	private boolean running = false;
 	
 	private Screen screen;
@@ -37,6 +38,7 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
+		randomLevel = new RandomLevel(64, 64);
 		
 		addKeyListener(key);
 	}
@@ -102,7 +104,8 @@ public class Game extends Canvas implements Runnable {
 			return;
 		}
 		screen.clear();
-		screen.render(xOffset, yOffset);
+//		screen.render(xOffset, yOffset);
+		randomLevel.render(xOffset, yOffset, screen);
 		for(int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
 		}

@@ -4,6 +4,7 @@ import java.util.Random;
 import com.jaybee291998.rain.level.tile.Tile;
 public class Screen {
 	public int width, height;
+	private int xOffset, yOffset;
 	public int[] pixels;
 	int pos = 0;
 	private Random random = new Random();
@@ -42,6 +43,8 @@ public class Screen {
 	}
 	
 	public void renderTile(int xp, int yp, Tile tile) {
+		xp -= xOffset;
+		yp -= yOffset;
 		for(int y = 0; y < tile.sprite.SIZE; y++) {
 			int ya = y + yp;
 			for(int x = 0; x < tile.sprite.SIZE; x++) {
@@ -50,5 +53,10 @@ public class Screen {
 				pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
 			}
 		}
+	}
+	
+	public void setOffset(int xOffset, int yOffset) {
+		this.xOffset = xOffset;
+		this.yOffset = yOffset;
 	}
 }
