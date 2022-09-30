@@ -16,6 +16,7 @@ public class Sprite {
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;
 		pixels = new int[SIZE * SIZE];
+		// staring coordinate of the sprite
 		this.x = x * SIZE;
 		this.y = y * SIZE;
 		this.sheet = sheet;
