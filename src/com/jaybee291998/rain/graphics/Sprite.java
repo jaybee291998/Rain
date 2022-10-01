@@ -12,10 +12,11 @@ public class Sprite {
 	public static Sprite flower = new Sprite(16, 1, 0, SpriteSheet.tiles);
 	public static Sprite ice = new Sprite(16, 5, 3, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 0xd2691e);
-	public static Sprite player0 = new Sprite(16, 4, 10, SpriteSheet.tiles);
-	public static Sprite player1 = new Sprite(16, 5, 10, SpriteSheet.tiles);
-	public static Sprite player2 = new Sprite(16, 4, 11, SpriteSheet.tiles);
-	public static Sprite player3 = new Sprite(16, 5, 11, SpriteSheet.tiles);
+	public static Sprite playerDown = new Sprite(32, 2, 5, SpriteSheet.tiles);
+	public static Sprite playerUp = new Sprite(32, 0, 5, SpriteSheet.tiles);
+	public static Sprite playerRight = new Sprite(32, 1, 5, SpriteSheet.tiles);
+	public static Sprite playerLeft = playerRight.flipHorizontally();
+//	public static Sprite player3 = new Sprite(16, 5, 11, SpriteSheet.tiles);
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;
@@ -45,5 +46,20 @@ public class Sprite {
 				pixels[col + row * SIZE] = sheet.pixels[(x+col) + (y + row) * sheet.SIZE];
 			}
 		}
+	}
+	
+	private Sprite flipHorizontally() {
+		// flip a sprite horizontally
+		int n = SIZE;
+		Sprite flippedSprite = new Sprite(n, 0);
+		int halfSize = n / 2;
+		for(int y = 0; y < n; y++) {
+			for(int x = 0; x < halfSize; x++) {
+				flippedSprite.pixels[x + y * n] = pixels[(n - x - 1) + y * n];
+				flippedSprite.pixels[(n-x-1) + y*n] = pixels[x + y * n];
+			}
+		}
+		
+		return flippedSprite;
 	}
 }

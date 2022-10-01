@@ -26,10 +26,26 @@ public class Player extends Mob{
 	}
 	
 	public void render(Screen screen) {
+		// center the player
 		int xx = x - 16, yy = y - 16;
-		screen.renderPlayer(xx, yy, sprite.player0);
-		screen.renderPlayer(xx + 16, yy, sprite.player1);
-		screen.renderPlayer(xx, yy+16, sprite.player2);
-		screen.renderPlayer(xx + 16, yy + 16, sprite.player3);
+		// change player sprite based on the direction
+		switch(dir) {
+			case 0:
+				screen.renderPlayer(xx, yy, sprite.playerUp);
+				break;
+			case 1:
+				screen.renderPlayer(xx, yy, sprite.playerRight);
+				break;
+			case 2:
+				screen.renderPlayer(xx, yy, sprite.playerDown);
+				break;
+			case 3:
+				screen.renderPlayer(xx, yy, sprite.playerLeft);
+				break;
+		}
+		
+//		screen.renderPlayer(xx + 16, yy, sprite.player1);
+//		screen.renderPlayer(xx, yy+16, sprite.player2);
+//		screen.renderPlayer(xx + 16, yy + 16, sprite.player3);
 	}
 }
