@@ -12,4 +12,8 @@ public class StoneTile extends Tile{
 	public void render(int x, int y, Screen screen) {
 		screen.renderTile(x, y, this);
 	}
+	
+	public boolean solid() {
+		return false;
+	}
 }
