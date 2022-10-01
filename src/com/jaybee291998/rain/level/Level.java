@@ -17,6 +17,7 @@ public class Level {
 	
 	public Level(String path) {
 		loadLevel(path);
+		generateLevel();
 	}
 
 	protected void loadLevel(String path) {		
@@ -52,11 +53,11 @@ public class Level {
 	public Tile getTile(int x, int y) {
 		if(x < 0 || y < 0 || y >= height || x >= width) return Tile.voidTile;
 		switch(tiles[x + y * width]){
-			case 0:
+			case 0xff00ff00:
 				return Tile.grass;
-			case 1:
+			case 0xff7f7f00:
 				return Tile.stone;
-			case 2:
+			case 0xffffff00:
 				return Tile.flower;
 			case 3:
 				return Tile.ice;

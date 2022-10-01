@@ -12,7 +12,9 @@ import javax.swing.JFrame;
 import com.jaybee291998.rain.entity.mob.Player;
 import com.jaybee291998.rain.graphics.Screen;
 import com.jaybee291998.rain.input.Keyboard;
+import com.jaybee291998.rain.level.Level;
 import com.jaybee291998.rain.level.RandomLevel;
+import com.jaybee291998.rain.level.Spawn;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -25,6 +27,7 @@ public class Game extends Canvas implements Runnable {
 	private JFrame frame;
 	private Keyboard key;
 	private RandomLevel randomLevel;
+	private Level spawn;
 	private Player player;
 	private boolean running = false;
 	
@@ -41,6 +44,7 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		key = new Keyboard();
 		randomLevel = new RandomLevel(32, 32);
+		spawn = new Spawn("/textures/spawn.png");
 		player = new Player(key);
 		
 		addKeyListener(key);
@@ -111,7 +115,7 @@ public class Game extends Canvas implements Runnable {
 //		screen.render(xOffset, yOffset);
 		int xScroll = player.x - width/2;
 		int yScroll = player.y - height/2;
-		randomLevel.render(xScroll, yScroll, screen);
+		spawn.render(xScroll, yScroll, screen);
 		player.render(screen);
 		for(int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
