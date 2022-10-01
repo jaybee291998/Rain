@@ -9,6 +9,7 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import com.jaybee291998.rain.entity.mob.Player;
 import com.jaybee291998.rain.graphics.Screen;
 import com.jaybee291998.rain.input.Keyboard;
 import com.jaybee291998.rain.level.RandomLevel;
@@ -24,6 +25,7 @@ public class Game extends Canvas implements Runnable {
 	private JFrame frame;
 	private Keyboard key;
 	private RandomLevel randomLevel;
+	private Player player;
 	private boolean running = false;
 	
 	private Screen screen;
@@ -39,6 +41,7 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		key = new Keyboard();
 		randomLevel = new RandomLevel(32, 32);
+		player = new Player();
 		
 		addKeyListener(key);
 	}
@@ -91,10 +94,11 @@ public class Game extends Canvas implements Runnable {
 	
 	public void update() {
 		key.update();
-		if(key.up) yOffset--;
-		if(key.down) yOffset++;
-		if(key.left) xOffset--;
-		if(key.right) xOffset++;
+		player.update(key);
+//		if(key.up) yOffset--;
+//		if(key.down) yOffset++;
+//		if(key.left) xOffset--;
+//		if(key.right) xOffset++;
 	}
 	
 	public void render() {
@@ -105,7 +109,10 @@ public class Game extends Canvas implements Runnable {
 		}
 		screen.clear();
 //		screen.render(xOffset, yOffset);
-		randomLevel.render(xOffset, yOffset, screen);
+		int xScroll = player.x - width/2;
+		int yScroll = player.y - height/2;
+		randomLevel.render(xScroll, yScroll, screen);
+		player.render(screen);
 		for(int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
 		}
