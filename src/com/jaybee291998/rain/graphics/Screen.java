@@ -65,7 +65,10 @@ public class Screen {
 				int xa = x + xp;
 				if(xa < -16 || xa >= width || ya < 0 || ya >= height) break;
 				if(xa < 0) xa = 0;
-				pixels[xa + ya * width] = playerSprite.pixels[x + y * 16];
+				int color = playerSprite.pixels[x + y * 16];
+				// don render background which is pink
+				if(color != 0xffff00ff) pixels[xa + ya * width] = color;
+				
 			}
 		}
 	}

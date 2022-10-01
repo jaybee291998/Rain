@@ -13,6 +13,9 @@ public class Sprite {
 	public static Sprite ice = new Sprite(16, 5, 3, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 0xd2691e);
 	public static Sprite player0 = new Sprite(16, 4, 10, SpriteSheet.tiles);
+	public static Sprite player1 = new Sprite(16, 5, 10, SpriteSheet.tiles);
+	public static Sprite player2 = new Sprite(16, 4, 11, SpriteSheet.tiles);
+	public static Sprite player3 = new Sprite(16, 5, 11, SpriteSheet.tiles);
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;
