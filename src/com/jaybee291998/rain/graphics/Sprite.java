@@ -12,10 +12,9 @@ public class Sprite {
 	public static Sprite flower = new Sprite(16, 1, 0, SpriteSheet.tiles);
 	public static Sprite ice = new Sprite(16, 5, 3, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 0xd2691e);
-	public static Sprite playerDown = new Sprite(32, 2, 5, SpriteSheet.tiles);
-	public static Sprite playerUp = new Sprite(32, 0, 5, SpriteSheet.tiles);
-	public static Sprite playerRight = new Sprite(32, 1, 5, SpriteSheet.tiles);
-	public static Sprite playerLeft = playerRight.flipHorizontally();
+	public static Sprite playerForward = new Sprite(32, 2, 5, SpriteSheet.tiles);
+	public static Sprite playerBack = new Sprite(32, 0, 5, SpriteSheet.tiles);
+	public static Sprite playerSide = new Sprite(32, 1, 5, SpriteSheet.tiles);
 //	public static Sprite player3 = new Sprite(16, 5, 11, SpriteSheet.tiles);
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {

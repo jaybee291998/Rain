@@ -4,16 +4,20 @@ import com.jaybee291998.rain.graphics.Screen;
 import com.jaybee291998.rain.input.Keyboard;
 
 public class Player extends Mob{
-	public Player() {
-		
+	private Keyboard key;
+	public Player(Keyboard key) {
+		this.key = key;
+		sprite = sprite.playerForward;
 	}
 	
-	public Player(int x, int y) {
+	public Player(int x, int y, Keyboard key) {
 		this.x = x;
 		this.y = y;
+		this.key = key;
+		sprite = sprite.playerForward;
 	}
 	
-	public void update(Keyboard key) 
+	public void update() 
 	{
 		// get the direction that the player is traveling with
 		int xa = 0, ya = 0;
@@ -26,23 +30,24 @@ public class Player extends Mob{
 	}
 	
 	public void render(Screen screen) {
-		// center the player
-		int xx = x - 16, yy = y - 16;
 		// change player sprite based on the direction
+		boolean xFlip = false;
 		switch(dir) {
 			case 0:
-				screen.renderPlayer(xx, yy, sprite.playerUp);
+				sprite = sprite.playerBack;
 				break;
 			case 1:
-				screen.renderPlayer(xx, yy, sprite.playerRight);
+				sprite = sprite.playerSide;
 				break;
 			case 2:
-				screen.renderPlayer(xx, yy, sprite.playerDown);
+				sprite = sprite.playerForward;
 				break;
 			case 3:
-				screen.renderPlayer(xx, yy, sprite.playerLeft);
+				sprite = sprite.playerSide;
+				xFlip = true;
 				break;
 		}
+		screen.renderPlayer(x - 16, y -16, sprite, xFlip, false);
 		
 //		screen.renderPlayer(xx + 16, yy, sprite.player1);
 //		screen.renderPlayer(xx, yy+16, sprite.player2);

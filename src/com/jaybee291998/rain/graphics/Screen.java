@@ -56,16 +56,20 @@ public class Screen {
 		}
 	}
 
-	public void renderPlayer(int xp, int yp, Sprite playerSprite) {
+	public void renderPlayer(int xp, int yp, Sprite playerSprite, boolean xFlip, boolean yFlip) {
 		xp -= xOffset;
 		yp -= yOffset;
 		for(int y = 0; y < playerSprite.SIZE; y++) {
 			int ya = y + yp;
+			int ys = y;
+			if(yFlip) ys = playerSprite.SIZE - 1 - y;
 			for(int x = 0; x < playerSprite.SIZE; x++) {
 				int xa = x + xp;
+				int xs = x;
+				if(xFlip) xs = playerSprite.SIZE - 1 - x;
 				if(xa < -playerSprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
 				if(xa < 0) xa = 0;
-				int color = playerSprite.pixels[x + y * playerSprite.SIZE];
+				int color = playerSprite.pixels[xs + ys * playerSprite.SIZE];
 				// don render background which is pink
 				if(color != 0xffff00ff) pixels[xa + ya * width] = color;
 				
