@@ -8,8 +8,19 @@ public class Mob extends Entity {
 	protected int dir = 0;
 	protected boolean moving = false;
 	
-	public void move() {
-		
+	public void move(int xa, int ya) {
+		// 0 - north, 1 = east, 2 = south, 3 = west
+		//determine the direction of the player based on the movement
+		if(xa < 0) dir = 3;
+		if(xa > 0) dir = 1;
+		if(ya < 0) dir = 0;
+		if(ya > 0) dir = 2;
+		// check for collision
+		if(!collision()) {
+			// move the mob
+			x += xa;
+			y += ya;
+		}
 	}
 	
 	public void update() {
