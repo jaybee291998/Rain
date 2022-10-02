@@ -1,7 +1,9 @@
 package com.jaybee291998.rain.entity.mob;
 
+import com.jaybee291998.rain.Game;
 import com.jaybee291998.rain.graphics.Screen;
 import com.jaybee291998.rain.input.Keyboard;
+import com.jaybee291998.rain.input.Mouse;
 import com.jaybee291998.rain.level.Level;
 
 public class Player extends Mob{
@@ -24,6 +26,9 @@ public class Player extends Mob{
 	
 	public void update() 
 	{
+		if(Mouse.getButton() == 1){
+			updateShooting();
+		}
 		// animation counter
 		if(anim < 10000) anim++;
 		else anim = 0;
@@ -42,6 +47,14 @@ public class Player extends Mob{
 		}
 	}
 	
+	private void updateShooting() {
+		double dx = Mouse.getX() - Game.getWindowWidth() / 2; 
+		double dy = Mouse.getY() - Game.getWindowHeight() / 2;
+		double dir = Math.atan2(dy, dx);
+		shoot(dir);
+		
+	}
+
 	public void render(Screen screen) {
 		// change player sprite based on the direction
 		boolean xFlip = false;

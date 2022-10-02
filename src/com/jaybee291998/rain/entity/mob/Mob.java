@@ -37,21 +37,11 @@ public class Mob extends Entity {
 	public void render() {
 		
 	}
-	
-//	private boolean collision(int xa, int ya) {
-//		int xPlus = (x + xa + 8)>>4;
-//		int xMinus = (x + xa - 8)>>4;
-//		int yPlus = (y + ya + 15)>>4;
-//		int yMinus = (y + ya - 15)>>4;
-//		
-//		Tile cornerTile1 = level.getTile(xMinus, yMinus);
-//		Tile cornerTile2 = level.getTile(xPlus, yMinus);
-//		Tile cornerTile3 = level.getTile(xPlus, yPlus);
-//		Tile cornerTile4 = level.getTile(xMinus, yPlus);
-//
-//		return cornerTile1.isSolid() || cornerTile2.isSolid() || cornerTile3.isSolid() || cornerTile4.isSolid();
-//	}
 
+	protected void shoot(double dir) {
+		dir = dir * (180 / Math.PI);
+		System.out.println("Angle: " + dir);
+	}
 	private boolean collision(int xa, int ya) {
 		boolean solid = false;
 		for(int c = 0; c < 4; c++) {
