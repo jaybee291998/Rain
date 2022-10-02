@@ -26,8 +26,8 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private JFrame frame;
 	private Keyboard key;
-	private RandomLevel randomLevel;
-	private Level spawn;
+//	private RandomLevel randomLevel;
+	private Level level;
 	private Player player;
 	private boolean running = false;
 	
@@ -43,9 +43,9 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		randomLevel = new RandomLevel(32, 32);
-		spawn = new Spawn("/textures/spawn.png");
-		player = new Player(key, spawn, spawn.getWidth()*8, spawn.getHeight()*8);
+//		randomLevel = new RandomLevel(32, 32);
+		level = Level.spawn;
+		player = new Player(key, level, level.getWidth()*8, level.getHeight()*8);
 		
 		addKeyListener(key);
 	}
@@ -115,7 +115,7 @@ public class Game extends Canvas implements Runnable {
 //		screen.render(xOffset, yOffset);
 		int xScroll = player.x - width/2;
 		int yScroll = player.y - height/2;
-		spawn.render(xScroll, yScroll, screen);
+		level.render(xScroll, yScroll, screen);
 		player.render(screen);
 		
 		for(int i = 0; i < pixels.length; i++) {

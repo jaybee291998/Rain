@@ -7,11 +7,19 @@ public class Sprite {
 	public int x, y;
 	private SpriteSheet sheet;
 	
-	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.tiles);
+	public static Sprite grass = new Sprite(16, 0, 5, SpriteSheet.tiles);
 	public static Sprite stone = new Sprite(16, 2, 0, SpriteSheet.tiles);
 	public static Sprite flower = new Sprite(16, 1, 0, SpriteSheet.tiles);
 	public static Sprite ice = new Sprite(16, 5, 3, SpriteSheet.tiles);
 	public static Sprite voidSprite = new Sprite(16, 0xd2691e);
+	
+	// spawn sprites
+	public static Sprite spawnGrass = new Sprite(16, 0, 5, SpriteSheet.tiles);
+	public static Sprite spawnWall1 = new Sprite(16, 2, 3, SpriteSheet.tiles);
+	public static Sprite spawnWall2 = new Sprite(16, 2, 4, SpriteSheet.tiles);
+	public static Sprite spawnFloor = new Sprite(16, 4, 4, SpriteSheet.tiles);
+	public static Sprite spawnWater = new Sprite(16, 5, 2, SpriteSheet.tiles);
+	// player tiles
 	public static Sprite playerForward = new Sprite(32, 2, 5, SpriteSheet.tiles);
 	public static Sprite playerBack = new Sprite(32, 0, 5, SpriteSheet.tiles);
 	public static Sprite playerSide = new Sprite(32, 1, 5, SpriteSheet.tiles);

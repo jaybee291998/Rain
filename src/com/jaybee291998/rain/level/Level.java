@@ -1,5 +1,10 @@
 package com.jaybee291998.rain.level;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import com.jaybee291998.rain.graphics.Screen;
 import com.jaybee291998.rain.level.tile.Tile;
 
@@ -8,13 +13,19 @@ public class Level {
 	protected int width, height;
 	protected int[] tiles;
 	
+	public static Level spawn = new Spawn("/levels/new_spawn.png");
+	
 	public Level(int width, int height) {
 		this.width = width;
 		this.height = height;
 		tiles = new int[width * height];
 		generateLevel();
 	}
-	
+
+	public Level(String path) {
+		loadLevel(path);
+		generateLevel();
+	}
 	
 	public int getWidth() {
 		return width;
@@ -23,12 +34,18 @@ public class Level {
 	public int getHeight() {
 		return height;
 	}
-	public Level(String path) {
-		loadLevel(path);
-		generateLevel();
-	}
 
-	protected void loadLevel(String path) {		
+	public void loadLevel(String path) {
+		try {
+			BufferedImage image = ImageIO.read(Spawn.class.getResource(path));
+			width = image.getWidth();
+			height = image.getHeight();
+			tiles = new int[width * height];
+			image.getRGB(0, 0, width, height, tiles, 0, width);
+		}catch(IOException e) {
+			e.printStackTrace();
+			System.out.println("Hey we cant find level file!!");
+		}
 	}
 
 	protected void generateLevel() {
@@ -61,14 +78,16 @@ public class Level {
 	public Tile getTile(int x, int y) {
 		if(x < 0 || y < 0 || y >= height || x >= width) return Tile.voidTile;
 		switch(tiles[x + y * width]){
-			case 0xff00ff00:
-				return Tile.grass;
-			case 0xff7f7f00:
-				return Tile.stone;
-			case 0xffffff00:
-				return Tile.flower;
-			case 3:
-				return Tile.ice;
+			case Tile.colSpawnGrass:
+				return Tile.spawnGrass;
+			case Tile.colSpawnFloor:
+				return Tile.spawnFloor;
+			case Tile.colSpawnWall1:
+				return Tile.spawnWall1;
+			case Tile.colSpawnWall2:
+				return Tile.spawnWall2;
+			case Tile.colSpawnWater:
+				return Tile.spawnWater;
 			default:
 				return Tile.voidTile;
 		}
