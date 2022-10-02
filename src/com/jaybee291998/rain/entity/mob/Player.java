@@ -7,12 +7,12 @@ import com.jaybee291998.rain.level.Level;
 public class Player extends Mob{
 	private Keyboard key;
 	private int anim = 0;
-	public Player(Keyboard key, Level level) {
+	public Player(Keyboard key, Level level, int x, int y) {
 		this.key = key;
 		this.level = level;
 		sprite = sprite.playerForward;
-		x = (level.getWidth() / 2)<<4;
-		y = (level.getHeight() / 2)<<4;
+		this.x = x;
+		this.y = y;
 	}
 	
 	public Player(int x, int y, Keyboard key) {
