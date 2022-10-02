@@ -2,12 +2,14 @@ package com.jaybee291998.rain.entity.mob;
 
 import com.jaybee291998.rain.graphics.Screen;
 import com.jaybee291998.rain.input.Keyboard;
+import com.jaybee291998.rain.level.Level;
 
 public class Player extends Mob{
 	private Keyboard key;
 	private int anim = 0;
-	public Player(Keyboard key) {
+	public Player(Keyboard key, Level level) {
 		this.key = key;
+		this.level = level;
 		sprite = sprite.playerForward;
 	}
 	

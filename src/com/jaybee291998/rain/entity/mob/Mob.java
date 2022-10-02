@@ -20,6 +20,12 @@ public class Mob extends Entity {
 			// move the mob
 			x += xa;
 			y += ya;
+		}else {
+			if(dir == 0) ya += 10;
+			if(dir == 2) ya -= 10;
+			if(dir == 1) xa -= 10;
+			if(dir == 3) xa += 10;
+			System.out.println("push back");
 		}
 	}
 	
@@ -32,6 +38,7 @@ public class Mob extends Entity {
 	}
 	
 	private boolean collision() {
-		return false;
+//		System.out.println("detect collison");
+		return level.getTile(x>>4,  y>>4).isSolid();
 	}
 }

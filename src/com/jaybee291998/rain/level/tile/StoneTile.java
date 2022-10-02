@@ -13,7 +13,8 @@ public class StoneTile extends Tile{
 		screen.renderTile(x, y, this);
 	}
 	
-	public boolean solid() {
-		return false;
+	public boolean isSolid() {
+		System.out.println("Hit a rock");
+		return true;
 	}
 }

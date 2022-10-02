@@ -22,7 +22,7 @@ public class Tile {
 		
 	}
 	
-	public boolean solid() {
+	public boolean isSolid() {
 		return false;
 	}
 }
