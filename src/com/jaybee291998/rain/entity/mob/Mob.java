@@ -16,17 +16,18 @@ public class Mob extends Entity {
 		if(ya < 0) dir = 0;
 		if(ya > 0) dir = 2;
 		// check for collision
-		if(!collision()) {
+		if(!collision(xa, ya)) {
 			// move the mob
 			x += xa;
 			y += ya;
-		}else {
-			if(dir == 0) y += 1;
-			if(dir == 2) y -= 1;
-			if(dir == 1) x -= 1;
-			if(dir == 3) x += 1;
-			System.out.println("push back");
 		}
+//		else {
+//			if(dir == 0) y += 1;
+//			if(dir == 2) y -= 1;
+//			if(dir == 1) x -= 1;
+//			if(dir == 3) x += 1;
+//			System.out.println("push back");
+//		}
 	}
 	
 	public void update() {
@@ -37,8 +38,8 @@ public class Mob extends Entity {
 		
 	}
 	
-	private boolean collision() {
+	private boolean collision(int xa, int ya) {
 //		System.out.println("detect collison");
-		return level.getTile(x>>4,  y>>4).isSolid();
+		return level.getTile((x+xa)>>4,  (y+ya)>>4).isSolid();
 	}
 }
