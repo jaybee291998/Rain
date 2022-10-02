@@ -55,7 +55,7 @@ public class Mob extends Entity {
 	private boolean collision(int xa, int ya) {
 		boolean solid = false;
 		for(int c = 0; c < 4; c++) {
-			int xt = ((x + xa) + c%2 * 2 * 8 - 8) >> 4;
+			int xt = ((x + xa) + c%2 * 2 * 7 - 7) >> 4;
 			int yt = ((y + ya) + c/2 * 2 * 15 - 15) >> 4;
 			if(level.getTile(xt, yt).isSolid()) {
 				solid = true;

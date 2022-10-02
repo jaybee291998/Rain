@@ -1,6 +1,7 @@
 package com.jaybee291998.rain;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -12,9 +13,8 @@ import javax.swing.JFrame;
 import com.jaybee291998.rain.entity.mob.Player;
 import com.jaybee291998.rain.graphics.Screen;
 import com.jaybee291998.rain.input.Keyboard;
+import com.jaybee291998.rain.input.Mouse;
 import com.jaybee291998.rain.level.Level;
-import com.jaybee291998.rain.level.RandomLevel;
-import com.jaybee291998.rain.level.Spawn;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -26,6 +26,7 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private JFrame frame;
 	private Keyboard key;
+	private Mouse mouse;
 //	private RandomLevel randomLevel;
 	private Level level;
 	private Player player;
@@ -43,11 +44,14 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
+		mouse = new Mouse();
 //		randomLevel = new RandomLevel(32, 32);
 		level = Level.spawn;
 		player = new Player(key, level, level.getWidth()*8, level.getHeight()*8);
 		
 		addKeyListener(key);
+		addMouseListener(mouse);
+		addMouseMotionListener(mouse);
 	}
 	
 	public synchronized void start() {
@@ -123,6 +127,8 @@ public class Game extends Canvas implements Runnable {
 		}
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.setColor(Color.WHITE);
+		g.fillRect(mouse.getX() - 4,  mouse.getY() - 4, 8, 8);
 		g.dispose();
 		bs.show();
 	}
