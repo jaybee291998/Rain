@@ -7,7 +7,6 @@ public class SpawnWall extends Tile {
 
 	public SpawnWall(Sprite sprite) {
 		super(sprite);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public boolean isSolid() {

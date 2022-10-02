@@ -7,7 +7,6 @@ public class SpawnGrass extends Tile {
 
 	public SpawnGrass(Sprite sprite) {
 		super(sprite);
-		// TODO Auto-generated constructor stub
 	}
 
 }

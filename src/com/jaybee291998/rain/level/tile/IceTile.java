@@ -6,6 +6,5 @@ public class IceTile extends Tile{
 
 	public IceTile(Sprite sprite) {
 		super(sprite);
-		// TODO Auto-generated constructor stub
 	}
 }
