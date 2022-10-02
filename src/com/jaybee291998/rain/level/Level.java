@@ -15,6 +15,14 @@ public class Level {
 		generateLevel();
 	}
 	
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
 	public Level(String path) {
 		loadLevel(path);
 		generateLevel();

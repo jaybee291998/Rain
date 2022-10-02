@@ -11,6 +11,8 @@ public class Player extends Mob{
 		this.key = key;
 		this.level = level;
 		sprite = sprite.playerForward;
+		x = (level.getWidth() / 2)<<4;
+		y = (level.getHeight() / 2)<<4;
 	}
 	
 	public Player(int x, int y, Keyboard key) {
