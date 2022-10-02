@@ -21,10 +21,10 @@ public class Mob extends Entity {
 			x += xa;
 			y += ya;
 		}else {
-			if(dir == 0) ya += 10;
-			if(dir == 2) ya -= 10;
-			if(dir == 1) xa -= 10;
-			if(dir == 3) xa += 10;
+			if(dir == 0) y += 1;
+			if(dir == 2) y -= 1;
+			if(dir == 1) x -= 1;
+			if(dir == 3) x += 1;
 			System.out.println("push back");
 		}
 	}
