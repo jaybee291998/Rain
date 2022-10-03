@@ -2,9 +2,12 @@ package com.jaybee291998.rain.level;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import com.jaybee291998.rain.entity.Entity;
 import com.jaybee291998.rain.graphics.Screen;
 import com.jaybee291998.rain.level.tile.Tile;
 
@@ -12,6 +15,7 @@ public class Level {
 	
 	protected int width, height;
 	protected int[] tiles;
+	private List<Entity> entities = new ArrayList<Entity>();
 	
 	public static Level spawn = new Spawn("/levels/new_spawn.png");
 	
@@ -52,7 +56,7 @@ public class Level {
 	}
 	
 	public void update() {
-		
+		for(Entity entity : entities) entity.update();
 	}
 	
 	protected void time() {
@@ -73,6 +77,8 @@ public class Level {
 				getTile(x, y).render(x<<4, y<<4, screen);
 			}
 		}
+		
+		for(Entity entity : entities) entity.render(screen);
 	}
 	
 	public Tile getTile(int x, int y) {
@@ -91,6 +97,10 @@ public class Level {
 			default:
 				return Tile.voidTile;
 		}
+	}
+	
+	public void addEntity(Entity entity) {
+		entities.add(entity);
 	}
 
 }

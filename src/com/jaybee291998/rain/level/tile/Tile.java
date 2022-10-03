@@ -37,7 +37,7 @@ public class Tile {
 	}
 	
 	public void render(int x, int y, Screen screen) {
-		screen.renderTile(x, y, this);
+		screen.renderTile(x, y, this.sprite);
 	}
 	
 	public boolean isSolid() {

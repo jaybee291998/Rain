@@ -1,15 +1,20 @@
 package com.jaybee291998.rain.entity.mob;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.jaybee291998.rain.entity.Entity;
+import com.jaybee291998.rain.entity.projectile.Projectile;
+import com.jaybee291998.rain.entity.projectile.StoneProjectile;
 import com.jaybee291998.rain.graphics.Sprite;
-import com.jaybee291998.rain.level.tile.Tile;
 
 public class Mob extends Entity {
 	protected Sprite sprite;
 	protected int dir = 0;
 	protected boolean moving = false;
 	protected boolean sprinting = false;
-	protected int sprintMultiplier = 4;
+	protected int sprintMultiplier = 2;
+	protected List<Projectile> projectiles = new ArrayList<Projectile>();
 	
 	public void move(int xa, int ya) {
 		if(xa != 0 && ya != 0) {
@@ -44,8 +49,10 @@ public class Mob extends Entity {
 	}
 
 	protected void shoot(double dir) {
-		dir = dir * (180 / Math.PI);
-		System.out.println("Angle: " + dir);
+//		dir = dir * (180 / Math.PI);
+		Projectile newprojectile = new StoneProjectile(x, y, dir);
+		level.addEntity(newprojectile);
+		projectiles.add(newprojectile);
 	}
 	private boolean collision(int xa, int ya) {
 		boolean solid = false;
