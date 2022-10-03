@@ -50,9 +50,9 @@ public class Mob extends Entity {
 
 	protected void shoot(double dir) {
 //		dir = dir * (180 / Math.PI);ddddsda
-		Projectile newprojectile = new StoneProjectile(x, y, dir);
+		Projectile newprojectile = new StoneProjectile(x , y - 4, dir);
 		level.addEntity(newprojectile);
-		projectiles.add(newprojectile);
+//		projectiles.add(newprojectile);
 	}
 	private boolean collision(int xa, int ya) {
 		boolean solid = false;
