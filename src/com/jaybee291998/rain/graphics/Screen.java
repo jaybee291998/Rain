@@ -1,6 +1,7 @@
 package com.jaybee291998.rain.graphics;
 import java.util.Random;
 
+import com.jaybee291998.rain.entity.projectile.Projectile;
 import com.jaybee291998.rain.level.tile.Tile;
 public class Screen {
 	public int width, height;
@@ -51,9 +52,7 @@ public class Screen {
 				int xa = x + xp;
 				if(xa < -sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
 				if(xa < 0) xa = 0;
-				int color = sprite.pixels[x + y * sprite.SIZE];
-				// don render background which is pink
-				if(color != 0xffff00ff) pixels[xa + ya * width] = color;
+				pixels[xa + ya * width] = sprite.pixels[x + y * sprite.SIZE];
 			}
 		}
 	}
@@ -75,6 +74,21 @@ public class Screen {
 				// don render background which is pink
 				if(color != 0xffff00ff) pixels[xa + ya * width] = color;
 				
+			}
+		}
+	}
+	
+	public void renderProjectile(int xp, int yp, Projectile p) {
+		xp -= xOffset;
+		yp -= yOffset;
+		for(int y = 0; y < p.getSpriteSize(); y++) {
+			int ya = y + yp;
+			for(int x = 0; x < p.getSpriteSize(); x++) {
+				int xa = x + xp;
+				if(xa < -p.getSpriteSize() || xa >= width || ya < 0 || ya >= height) break;
+				if(xa < 0) xa = 0;
+				int color = p.getSprite().pixels[x + y * p.getSpriteSize()];
+				if(color != 0xffff00ff) pixels[xa + ya * width] = color;
 			}
 		}
 	}

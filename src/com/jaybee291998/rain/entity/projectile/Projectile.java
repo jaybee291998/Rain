@@ -7,6 +7,7 @@ import com.jaybee291998.rain.graphics.Sprite;
 public abstract class Projectile extends Entity {
 	protected final int xOrigin, yOrigin;
 	protected double angle;
+	protected double x, y;
 	protected Sprite sprite;
 	protected double nx ,ny;
 	protected double speed, rateOfFire, range, damage;
@@ -39,6 +40,14 @@ public abstract class Projectile extends Entity {
 	}
 	
 	public void render(Screen screen) {
-		screen.renderTile(x, y, sprite);
+		screen.renderProjectile((int) x - 8, (int) y - 8, this);
+	}
+	
+	public Sprite getSprite() {
+		return sprite;
+	}
+	
+	public int getSpriteSize() {
+		return sprite.SIZE;
 	}
 }

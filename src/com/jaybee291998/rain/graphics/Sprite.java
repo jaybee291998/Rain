@@ -40,6 +40,8 @@ public class Sprite {
 	public static Sprite[] playerForwardSprites = {playerForward, playerForward1, playerForward2};
 	public static Sprite[] playerBackSprites = {playerBack, playerBack1, playerBack2};
 	public static Sprite[] playerSideSprites = {playerSide, playerSide1, playerSide2};
+
+	
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
 		SIZE = size;
 		pixels = new int[SIZE * SIZE];
