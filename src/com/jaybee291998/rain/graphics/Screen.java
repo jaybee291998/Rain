@@ -38,7 +38,7 @@ public class Screen {
 			for(int x= 0; x < width; x++) {
 				int xp = x + xOffset;
 				if(xp < 0 || xp >= width) continue;
-				pixels[xp + yp * width] = Sprite.grass.pixels[(x&15) + (y&15) * Sprite.grass.SIZE];
+				pixels[xp + yp * width] = Sprite.grass.pixels[(x&15) + (y&15) * Sprite.grass.getWidth()];
 			}
 		}		
 	}
@@ -46,13 +46,13 @@ public class Screen {
 	public void renderTile(int xp, int yp, Sprite sprite) {
 		xp -= xOffset;
 		yp -= yOffset;
-		for(int y = 0; y < sprite.SIZE; y++) {
+		for(int y = 0; y < sprite.getHeight(); y++) {
 			int ya = y + yp;
-			for(int x = 0; x < sprite.SIZE; x++) {
+			for(int x = 0; x < sprite.getWidth(); x++) {
 				int xa = x + xp;
-				if(xa < -sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
+				if(xa < -sprite.getWidth() || xa >= width || ya < 0 || ya >= height) break;
 				if(xa < 0) xa = 0;
-				pixels[xa + ya * width] = sprite.pixels[x + y * sprite.SIZE];
+				pixels[xa + ya * width] = sprite.pixels[x + y * sprite.getWidth()];
 			}
 		}
 	}
@@ -60,17 +60,17 @@ public class Screen {
 	public void renderPlayer(int xp, int yp, Sprite playerSprite, boolean xFlip, boolean yFlip) {
 		xp -= xOffset;
 		yp -= yOffset;
-		for(int y = 0; y < playerSprite.SIZE; y++) {
+		for(int y = 0; y < playerSprite.getHeight(); y++) {
 			int ya = y + yp;
 			int ys = y;
-			if(yFlip) ys = playerSprite.SIZE - 1 - y;
-			for(int x = 0; x < playerSprite.SIZE; x++) {
+			if(yFlip) ys = playerSprite.getHeight() - 1 - y;
+			for(int x = 0; x < playerSprite.getWidth(); x++) {
 				int xa = x + xp;
 				int xs = x;
-				if(xFlip) xs = playerSprite.SIZE - 1 - x;
-				if(xa < -playerSprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
+				if(xFlip) xs = playerSprite.getWidth() - 1 - x;
+				if(xa < -playerSprite.getWidth() || xa >= width || ya < 0 || ya >= height) break;
 				if(xa < 0) xa = 0;
-				int color = playerSprite.pixels[xs + ys * playerSprite.SIZE];
+				int color = playerSprite.pixels[xs + ys * playerSprite.getWidth()];
 				// don render background which is pink
 				if(color != 0xffff00ff) pixels[xa + ya * width] = color;
 				
@@ -89,6 +89,22 @@ public class Screen {
 				if(xa < 0) xa = 0;
 				int color = p.getSprite().pixels[x + y * p.getSpriteSize()];
 				if(color != 0xffff00ff) pixels[xa + ya * width] = color;
+			}
+		}
+	}
+	
+	public void renderSprite(int xp, int yp, Sprite sprite, boolean fixed) {
+		if(!fixed) {
+			xp -= xOffset;
+			yp -= yOffset;
+		}
+		
+		for(int y = 0; y < sprite.getHeight(); y++) {
+			int ya = y + yp;
+			for(int x = 0; x < sprite.getWidth(); x++) {
+				int xa = x + xp;
+				if(xa < 0 || ya < 0 || xa > width || ya > height) continue;
+				pixels[xa + ya * width] = sprite.pixels[x + y * sprite.getWidth()];
 			}
 		}
 	}

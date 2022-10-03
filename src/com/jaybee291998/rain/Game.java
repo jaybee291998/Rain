@@ -7,11 +7,13 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
 import com.jaybee291998.rain.entity.mob.Player;
 import com.jaybee291998.rain.graphics.Screen;
+import com.jaybee291998.rain.graphics.Sprite;
 import com.jaybee291998.rain.input.Keyboard;
 import com.jaybee291998.rain.input.Mouse;
 import com.jaybee291998.rain.level.Level;
@@ -118,14 +120,20 @@ public class Game extends Canvas implements Runnable {
 		int yScroll = player.y - height/2;
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
-		
+		Random rand = new Random();
+		Sprite sprite = new Sprite(2, 0xff00ff);
+		for(int i = 0; i < 10; i++) {
+			int x = rand.nextInt(10) + 200;
+			int y = rand.nextInt(10) + 200;
+			screen.renderSprite(x, y, sprite, false);
+		}
 		for(int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
 		}
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
 		g.setColor(Color.WHITE);
-		g.fillRect(mouse.getX() - 4,  mouse.getY() - 4, 8, 8);
+//		g.fillRect(mouse.getX() - 4,  mouse.getY() - 4, 8, 8);
 		g.dispose();
 		bs.show();
 	}

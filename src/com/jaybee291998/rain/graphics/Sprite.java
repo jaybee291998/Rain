@@ -2,7 +2,7 @@ package com.jaybee291998.rain.graphics;
 
 public class Sprite {
 	
-	public final int SIZE;
+	private final int width, height;
 	public int[] pixels;
 	public int x, y;
 	private SpriteSheet sheet;
@@ -43,47 +43,42 @@ public class Sprite {
 
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet) {
-		SIZE = size;
-		pixels = new int[SIZE * SIZE];
+		width = size;
+		height = size;
+		pixels = new int[width * height];
 		// staring coordinate of the sprite
-		this.x = x * SIZE;
-		this.y = y * SIZE;
+		this.x = x * width;
+		this.y = y * height;
 		this.sheet = sheet;
 		load();
 	}
 	
 	public Sprite(int size, int color) {
-		SIZE = size;
-		pixels = new int[SIZE * SIZE];
+		width = size;
+		height = size;
+		pixels = new int[width * height];
 		setColor(color);
 	}
 	
 	public void setColor(int color) {
-		for(int i = 0; i < SIZE * SIZE; i++) {
+		for(int i = 0; i < width * height; i++) {
 			pixels[i] = color;
 		}
 	}
 	
 	private void load() {
-		for(int row = 0; row < SIZE; row++) {
-			for(int col = 0; col < SIZE; col++) {
-				pixels[col + row * SIZE] = sheet.pixels[(x+col) + (y + row) * sheet.SIZE];
+		for(int row = 0; row < height; row++) {
+			for(int col = 0; col < width; col++) {
+				pixels[col + row * width] = sheet.pixels[(x+col) + (y + row) * sheet.SIZE];
 			}
 		}
 	}
 	
-	private Sprite flipHorizontally() {
-		// flip a sprite horizontally
-		int n = SIZE;
-		Sprite flippedSprite = new Sprite(n, 0);
-		int halfSize = n / 2;
-		for(int y = 0; y < n; y++) {
-			for(int x = 0; x < halfSize; x++) {
-				flippedSprite.pixels[x + y * n] = pixels[(n - x - 1) + y * n];
-				flippedSprite.pixels[(n-x-1) + y*n] = pixels[x + y * n];
-			}
-		}
-		
-		return flippedSprite;
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
 	}
 }
