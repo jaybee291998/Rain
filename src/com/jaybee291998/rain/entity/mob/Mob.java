@@ -1,6 +1,6 @@
 package com.jaybee291998.rain.entity.mob;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.jaybee291998.rain.entity.Entity;
@@ -14,7 +14,7 @@ public class Mob extends Entity {
 	protected boolean moving = false;
 	protected boolean sprinting = false;
 	protected int sprintMultiplier = 2;
-	protected List<Projectile> projectiles = new ArrayList<Projectile>();
+	protected List<Projectile> projectiles = new LinkedList<Projectile>();
 	
 	public void move(int xa, int ya) {
 		if(xa != 0 && ya != 0) {
@@ -49,7 +49,7 @@ public class Mob extends Entity {
 	}
 
 	protected void shoot(double dir) {
-//		dir = dir * (180 / Math.PI);
+//		dir = dir * (180 / Math.PI);ddddsda
 		Projectile newprojectile = new StoneProjectile(x, y, dir);
 		level.addEntity(newprojectile);
 		projectiles.add(newprojectile);
@@ -68,6 +68,14 @@ public class Mob extends Entity {
 		return solid;
 	}
 	
+	public void removeUnusedProjectiles() {
+		List<Projectile> projectilesToRemove = new LinkedList<Projectile>();
+		for(Projectile projectile : projectiles) {
+			if(projectile.isRemoved()) projectilesToRemove.add(projectile);
+		}
+		
+		for(Projectile projectile : projectilesToRemove) projectiles.remove(projectile);
+	}
 	protected void setSprint(boolean isSprinting) {
 		sprinting = isSprinting;
 	}

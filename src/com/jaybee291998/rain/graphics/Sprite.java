@@ -32,6 +32,9 @@ public class Sprite {
 	
 	public static Sprite playerSide1 = new Sprite(32, 1, 6, SpriteSheet.tiles);
 	public static Sprite playerSide2 = new Sprite(32, 1, 7, SpriteSheet.tiles);
+	
+	// projectile sprites
+	public static Sprite stoneProjectile = new Sprite(16, 3, 0, SpriteSheet.tiles);
 	// sprites associated to players direction
 	//
 	public static Sprite[] playerForwardSprites = {playerForward, playerForward1, playerForward2};

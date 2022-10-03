@@ -8,8 +8,8 @@ public class StoneProjectile extends Projectile {
 
 	public StoneProjectile(int x, int y, double angle) {
 		super(x, y, angle);
-		// TODO Auto-generated constructor stub
-		sprite = Sprite.stone;
+		range = 100;
+		sprite = Sprite.stoneProjectile;
 		speed = 2;
 		nx = speed * Math.cos(angle);
 		ny = speed * Math.sin(angle);

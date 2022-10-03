@@ -3,6 +3,7 @@ package com.jaybee291998.rain.level;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -15,7 +16,7 @@ public class Level {
 	
 	protected int width, height;
 	protected int[] tiles;
-	private List<Entity> entities = new ArrayList<Entity>();
+	private List<Entity> entities = new LinkedList<Entity>();
 	
 	public static Level spawn = new Spawn("/levels/new_spawn.png");
 	
@@ -57,6 +58,7 @@ public class Level {
 	
 	public void update() {
 		for(Entity entity : entities) entity.update();
+		removeUnusedEntity();
 	}
 	
 	protected void time() {
@@ -101,6 +103,19 @@ public class Level {
 	
 	public void addEntity(Entity entity) {
 		entities.add(entity);
+	}
+	
+	public void removeEntity(Entity entity) {
+		entities.remove(entity);
+	}
+	
+	public void removeUnusedEntity() {
+		List<Entity> entitiesToRemove = new LinkedList<Entity>();
+		for(Entity entity : entities) {
+			if(entity.isRemoved()) entitiesToRemove.add(entity);
+		}
+		
+		for(Entity entity : entitiesToRemove) entities.remove(entity);
 	}
 
 }
