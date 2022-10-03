@@ -8,12 +8,11 @@ public class StoneProjectile extends Projectile {
 
 	public StoneProjectile(int x, int y, double angle, Mob mob) {
 		super(x, y, angle, mob);
-		range = 100;
+		range = 2000;
 		sprite = Sprite.stoneProjectile;
-		speed = 2;
+		speed = 4;
 		nx = speed * Math.cos(angle);
 		ny = speed * Math.sin(angle);
-		level = Level.spawn;
 	}
 	
 

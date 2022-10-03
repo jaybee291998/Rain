@@ -100,9 +100,32 @@ public class Level {
 				return Tile.voidTile;
 		}
 	}
+	/**
+	 * 
+	 * @param x  position of the prjectile
+	 * @param y y position of the projectile
+	 * @param xa where its going
+	 * @param ya
+	 * @return whether there is a collison in any of the corner
+	 */
+	public boolean tileCollision(double x, double y, double xa, double ya, int size) {
+		boolean solid = false;
+		int projectileSize = 4;
+		// get the 4 corner tile,  check if any of those corner tiles are solid
+		for(int c = 0; c < 4; c++) {
+			double xt = ((x + xa) + c%2 * 2 * projectileSize - projectileSize) / size;
+			double yt = ((y + ya) + c/2 * 2 * projectileSize - projectileSize) / size;
+			if(getTile((int)xt, (int)yt).isSolid()) {
+				solid = true;
+				break;
+			}
+		}
+		return solid;
+	}
 	
 	public void addEntity(Entity entity) {
 		entities.add(entity);
+		entity.initLevel(this);
 	}
 	
 	public void removeEntity(Entity entity) {

@@ -9,7 +9,7 @@ import com.jaybee291998.rain.level.Level;
 
 public class Player extends Mob{
 	// the higher the slower the shooting
-	public static final int FIRE_RATE = 20; // max number of ticks before next fire
+	public static final int FIRE_RATE = 5; // max number of ticks before next fire
 	private Keyboard key;
 	private int anim = 0;
 	// remaining ticks before we can fire again

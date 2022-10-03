@@ -39,8 +39,13 @@ public abstract class Projectile extends Entity {
 	}
 	
 	public void move() {
-		x += nx;
-		y += ny;
+		if(!level.tileCollision(x, y, nx, ny, 16)){
+			x += nx;
+			y += ny;
+		}else {
+			removed = true;
+		}
+
 	}
 	
 	public void render(Screen screen) {
