@@ -24,12 +24,17 @@ public class Tile {
 	public static Tile spawnFloor = new SpawnFloor(Sprite.spawnFloor);
 	public static Tile spawnWater = new SpawnWater(Sprite.spawnWater);
 	
+	public static Tile orangeWall = new WallTile(Sprite.orangeWall);
+	public static Tile redwall = new WallTile(Sprite.redWall);
+	
 	// corresponding pixel color to a tile
 	public static final int colSpawnGrass = 0xff00ff00;
 	public static final int colSpawnWall1 = 0xff7f7f7f;
 	public static final int colSpawnWall2 = 0xff6e6e6e;
 	public static final int colSpawnFloor = 0xff9c8141;
 	public static final int colSpawnWater = 0xff3555a8;
+	public static final int colOrangeWall = 0xff8a6d27;
+	public static final int colRedWall = 0xff632a07;
 	
 	
 	public  Tile(Sprite sprite) {

@@ -96,6 +96,10 @@ public class Level {
 				return Tile.spawnWall2;
 			case Tile.colSpawnWater:
 				return Tile.spawnWater;
+			case Tile.colOrangeWall:
+				return Tile.orangeWall;
+			case Tile.colRedWall:
+				return Tile.redwall;
 			default:
 				return Tile.voidTile;
 		}
