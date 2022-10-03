@@ -50,7 +50,7 @@ public class Mob extends Entity {
 
 	protected void shoot(double dir) {
 //		dir = dir * (180 / Math.PI);ddddsda
-		Projectile newprojectile = new StoneProjectile(x , y - 4, dir);
+		Projectile newprojectile = new StoneProjectile(x , y - 4, dir, this);
 		level.addEntity(newprojectile);
 //		projectiles.add(newprojectile);
 	}

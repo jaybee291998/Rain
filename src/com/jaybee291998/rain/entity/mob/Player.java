@@ -8,8 +8,12 @@ import com.jaybee291998.rain.input.Mouse;
 import com.jaybee291998.rain.level.Level;
 
 public class Player extends Mob{
+	// the higher the slower the shooting
+	public static final int FIRE_RATE = 20; // max number of ticks before next fire
 	private Keyboard key;
 	private int anim = 0;
+	// remaining ticks before we can fire again
+	private int time_before_another_shot = FIRE_RATE;
 	public Player(Keyboard key, Level level, int x, int y) {
 		this.key = key;
 		this.level = level;
@@ -27,8 +31,13 @@ public class Player extends Mob{
 	
 	public void update() 
 	{
+		if(time_before_another_shot >= 0) time_before_another_shot--;
 		if(Mouse.getButton() == 1){
-			updateShooting();
+			if(time_before_another_shot <= 0) {
+				time_before_another_shot = FIRE_RATE;
+				updateShooting();
+			}
+			
 		}
 		// animation counter
 		if(anim < 10000) anim++;
