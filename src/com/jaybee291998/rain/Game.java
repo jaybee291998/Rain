@@ -48,8 +48,8 @@ public class Game extends Canvas implements Runnable {
 		key = new Keyboard();
 		mouse = new Mouse();
 //		randomLevel = new RandomLevel(32, 32);
-		level = Level.spawn;
-		player = new Player(key, level, level.getWidth()*8, level.getHeight()*8);
+		level = Level.testLevel;
+		player = new Player(key, level, level.getWidth()*8 + 10, level.getHeight()*8 + 10);
 		
 		addKeyListener(key);
 		addMouseListener(mouse);
@@ -122,8 +122,8 @@ public class Game extends Canvas implements Runnable {
 		Random rand = new Random();
 		Sprite sprite = new Sprite(2, 0xff00ff);
 		for(int i = 0; i < 10; i++) {
-			int x = rand.nextInt(10) + 200;
-			int y = rand.nextInt(10) + 200;
+			int x = rand.nextInt(10) + 80;
+			int y = rand.nextInt(10) + 80;
 			screen.renderSprite(x, y, sprite, false);
 		}
 		player.render(screen);

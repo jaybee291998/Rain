@@ -19,6 +19,7 @@ public class Level {
 	private List<Entity> entities = new LinkedList<Entity>();
 	
 	public static Level spawn = new Spawn("/levels/new_spawn.png");
+	public static Level testLevel = new Spawn("/levels/test.png");
 	
 	public Level(int width, int height) {
 		this.width = width;
